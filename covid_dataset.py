@@ -83,10 +83,6 @@ class CovidMerged(torch.utils.data.Dataset):
         masks_list = torch.as_tensor(np.array(masks_list), dtype=torch.uint8)
         bboxes = torch.as_tensor(np.array(bboxes), dtype=torch.float32)
 
-        if len(bboxes) < 1:
-            print('help')
-            print(self.imgs[idx])
-
         # number of regions with covid
         num_instances = len(bboxes)
 
