@@ -38,7 +38,7 @@ Table 1 shows the experimental design for this piece of work.
 | 4   |  Mask-RK3-CA   |      Mask-RCNN-ResNet-50-FPN      |        True         | 3 x 3 |         True         |
 | 5   |    Mask-RK5    |      Mask-RCNN-ResNet-50-FPN      |        True         | 5 x 5 |          -           |
 | 6   |  Mask-RK5-CA   |      Mask-RCNN-ResNet-50-FPN      |        True         | 5 x 5 |         True         |
-| 7   | Mask-Mobile-CA | Mask-RCNN-MobileNet-v3-large-FPN  |          -          |   -   |          -           |
+| 7   | Mask-Mobile-CA<sup>& | Mask-RCNN-MobileNet-v3-large-FPN  |          -          |   -   |          -           |
 </div>
 
 ## 3. Datasets
@@ -92,15 +92,17 @@ performance of each trained model was also evaluated on the test dataset.
 
 ## 5. Results
 
+__Table 2.__ Performance of the experiments after training for 50 epochs, an initial learning rate of 1.5 e-5 with an on-plateau learning scheduler and AdamW optimizer. 
+
 | Exp | mAPb      | APb @ <br/>IoU=0.50 | APb @ <br/>IoU=0.75 | mAPseg    | mAPseg <br/>@ IoU=0.50 | mAPseg <br/>@ IoU=0.75 | 
 |-----|-----------|---------------------|---------------------|-----------|------------------------|------------------------|
-| 1   | 0.3608    | 0.6856              | 0.3328              | 0.3256    | 0.6848                 | 0.2588                 | 
-| 2   | 0.424     |  0.726              | 0.434               | 0.368     | 0.714                  | 0.314                  | 
-| 3   | __0.5961__|  __0.8713__        | __0.6606___         | __0.5219__| __0.8644__             | __0.5625__             | 
-| 4	| __0.6169__| __0.8305__          | __0.6797__          | __0.5178__| __0.8223__             | __0.5872__               | 
-| 5   | 0.4804    | 0.7869              | 0.5068              | 0.4275    | 0.7888                 | 0.4298                 | 
-| 6   | 0.5671    | 0.7853              | 0.6259              | 0.4671    | 0.7769                 | 0.515                  | 
-| 7   | 0.3177    | 0.6203              | 0.2898              | 0.2648    | 0.5947                 | 0.2124                 |
+| 1   | 0.4231    | 0.7278              | 0.4336              | 0.3639     | 0.7227                 | 0.3338                 | 
+| 2   | 0.424     |  0.726              | 0.434               | 0.3677    | 0.714                  | 0.314                  | 
+| 3   | 0.6242    |  __0.8532__         | 0.6967              | 0.531.    | __0.8502__             | 0.5954                 | 
+| 4	  | __0.6648__| 0.8398              | __0.741__           | __0.5519_ |   0.8358               | __0.6381__             | 
+| 5   | __0.6387__| __0.8782__          | __0.7107__          | __0.5558__| __0.8737__             | __0.6355 __            | 
+| 6   | 0.5989    | 0.7976              | 0.6561              | 0.4966    | 0.7971                 | 0.5598                 |
+| 7   | 0.4149    | 0.6878              | 0.4319              | 0.3267    | 0.6478                 | 0.3087                 |
 
 
 
@@ -108,13 +110,13 @@ Our results showed that models with backbone ResNet-50-FPN and resized kernel to
 
 ### 5.1 Inference example
 
-(<img src='figures/predictions_exp_3_maskrcnn-resnet50-fpn_r.png' height='200'/>)
+<img src='figures/predictions_exp_3_maskrcnn-resnet50-fpn_r.png' height='200'/>
 
-(<img src='/figures/predictions_exp_4_maskrcnn-resnet50-fpn_ra.png' height='200'/>)
+<img src='/figures/predictions_exp_4_maskrcnn-resnet50-fpn_ra.png' height='200'/>
 
-(<img src='/figures/predictions_5_maskrcnn-resnet50-fpn_r.png' height='200'/>)
+<img src='/figures/predictions_5_maskrcnn-resnet50-fpn_r.png' height='200'/>
 
-(<img src='figures/predictions_6_maskrcnn-resnet50-fpn_r.png' height='200'/>)
+<img src='figures/predictions_6_maskrcnn-resnet50-fpn_r.png' height='200'/>
 
 
 ### Installation
