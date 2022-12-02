@@ -110,8 +110,8 @@ __Table 3.__ Best experimental results after training for 50 epochs, using AdamW
 |-----|:--------------:|:-----------:|:-------------------:|:-------------------:|:---------:|:----------------------:|:----------------------:|
 | 1   |  Base model    |0.4231       | 0.7278              | 0.4336              | 0.3639    | 0.7227                 | 0.3338                 |
 | 2   |  Mask-CA       |__0.7067__   |  0.866              | __0.7847__          | 0.5575    | 0.8635                 | 0.6301                 |
-| 3   |  Mask-RK3      | 0.6562      | __0.8923__          | 0.7364              | __0.5677__| __0.881__              | __0.6576__             |
-| 4	  |  Mask-RK3-CA   |0.6648.      | 0.8398              | 0.741               |  0.5519   |   0.8358               |   0.6381               |
+| 3   |  Mask-RK3      | 0.6612      | __0.8942__          | 0.7509              | __0.5695__| __0.8818__             | __0.6446__             |
+| 4	  |  Mask-RK3-CA   |0.6648       | 0.8398              | 0.741               |  0.5519   |   0.8358               |   0.6381               |
 | 5   |  Mask-RK5      |0.6347       |  0.877              |  0.718              |  0.5486   |   0.8712               | 0.6096                 | 
 | 6   |  Mask-RK5-CA   |0.5989       | 0.7976              | 0.6561              | 0.4966    | 0.7971                 | 0.5598                 |
 | 7   | Mask-Mobile-CA |0.5081       | 0.7511              | 0.5382              | 0.3876    | 0.7138                 | 0.3932                 |
@@ -130,7 +130,9 @@ __Table 4.__ Models ranking per metric.
 | 7   | Mask-Mobile-CA |6.0          | 6.0                 | 6.0                 | 6.0       |   7.0                  | 6.0                    |
 
 
-Tables 3-4 showed that Mask-RK3 model which has a ResNet-50-FPN backbone and kernels of size 3 x 3 outperformed the other models at segmenting COVID-19 lessions in CT sliced images. We can also observ that the best model for the detection was Mask-CA. Work conducted by [3] reported mAP at Iou=0.5 of 0.623 for the detection of COVID-19 in X-rays with YOLO-v5 network. A LSTM network with attention mechanism has achieved an mAP 0.4469 at IoU range[0.5:0.05:0.95] for segmentation of COVID-19 lession in the lungs [4]. In this work experiments Exp-02 to Exp-06 presented mAP at IoU=0.5 starting from 0.7138 and mAP at IoU range [0.5:0.05:0.95] from 0.3639 to 0.56677 for the segmentationof COVID-19. In addition, all models achieved mAP at IoU=0.50 over 0.72 for the detections of COVID-19.
+Tables 3-4 showed that Mask-RK3 model which has a ResNet-50-FPN backbone and kernels of size 3 x 3 outperformed the other models at segmenting COVID-19 lessions in CT sliced images. Mask-CA showed the highest performance for the detection of COVID-19. Work conducted by [3] reported mAP at Iou=0.5 of 0.623 for the detection of COVID-19 in X-rays with YOLO-v5 network. A LSTM network with attention mechanism has achieved an mAP 0.4469 at IoU range[0.5:0.05:0.95] for segmentation of COVID-19 lession in the lungs [4]. The models in this work achieved mAP at IoU=0.5 starting from 0.7138 and mAP at IoU range [0.5:0.05:0.95] from 0.3639 to 0.5695 for the segmentation of COVID-19. In addition, all models achieved mAP at IoU=0.50 over 0.72 for the detections of COVID-19.
+
+
 
 
 ### 5.1 Inference example
