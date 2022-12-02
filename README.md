@@ -19,10 +19,7 @@ In addition, we built Mask-RCNN-MobileNet-large-v3-FPN with the following featur
 - anchor sizes = (8, 16, 32, 64, 128, 256) and 
 aspect_ratios = (0.25, 0.5, 1.0, 2.0)
 
-Mask-RCNN-ResNet-50-FPN-v2  was used as the base model.This version in more precise and has a ResNet-50-FPN backbone from the benchmarking detection with vision transformers [2].
-
-
-Table 1 shows the experimental design for this piece of work.
+Mask-RCNN-ResNet-50-FPN-v2  was used as the base model.This version in more precise and has a ResNet-50-FPN backbone from the benchmarking detection with vision transformers [2]. Table 1 shows the experimental design for this work.
 
 
 <div align="center">
@@ -70,7 +67,9 @@ The sliced dataset was randomly split using the three-way holdout method with ra
 
 
 **Associated code**
-``` utility\convert_nii2png.py``` and ```utility\nii_vis_dataset.ipyn ``` 
+
+- ``` utility\convert_nii2png.py```
+- ```utility\nii_vis_dataset.ipyn ``` 
 
 
 ### 4.2 Training and Validation
