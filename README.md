@@ -8,7 +8,7 @@ Medical classification has widely benefited from recent developments in computer
 
 ## 2. Experimental Design
 
-The experimental setup consisted of the combination of the Mask-RCNN architecture with modification to the ResNet-50-FPN feature extractor. 
+The experimental setup consisted of the combination of the Mask-RCNN architecture with modification to the ResNet-50-FPN backbone. The modifications wrere made to the backbone:
 
 - Resize kernels from the first convolutional layer of the feature extractor - the original 
   dimensions were size 7 x 7. The kernels were resized to 3 x 3 and 5 x 5. 
@@ -16,8 +16,7 @@ The experimental setup consisted of the combination of the Mask-RCNN architectur
   The custom sizes were anchor sizes= (8, 16, 32, 64, 128, 256) and aspect ratios=(0.25, 0.5, 1.0, 1.5, 2.0). 
 
 In addition, we built Mask-RCNN-MobileNet-large-v3-FPN with the following features:
-- anchor sizes = (8, 16, 32, 64, 128, 256) and 
-aspect_ratios = (0.25, 0.5, 1.0, 2.0)
+- anchor sizes = (8, 16, 32, 64, 128, 256) and aspect_ratios = (0.25, 0.5, 1.0, 2.0)
 
 Mask-RCNN-ResNet-50-FPN-v2  was used as the base model.This version in more precise and has a ResNet-50-FPN backbone from the benchmarking detection with vision transformers [2]. Table 1 shows the experimental design for this work.
 
