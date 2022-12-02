@@ -18,7 +18,7 @@ The experimental setup consisted of the combination of the Mask-RCNN architectur
 In addition, we built Mask-RCNN-MobileNet-large-v3-FPN with the following features:
 - anchor sizes = (8, 16, 32, 64, 128, 256) and aspect_ratios = (0.25, 0.5, 1.0, 2.0)
 
-Mask-RCNN-ResNet-50-FPN-v2  was used as the base model.This version in more precise and has a ResNet-50-FPN backbone from the benchmarking detection with vision transformers [2]. Table 1 shows the experimental design for this work.
+Mask-RCNN-ResNet-50-FPN-v2  was used as the base model. This version has a ResNet-50-FPN backbone from the benchmarking detection with vision transformers [2]. Table 1 shows the experimental design for this work.
 
 
 <div align="center">
