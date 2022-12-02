@@ -48,7 +48,7 @@ grand-challenge.org/COVID-19-20/
 2. COVID-19 CT Lung and Infection Segmentation Dataset, 20 patients (only infection mask used) 
 https://zenodo.org/record/3757476#.YTdEx55Kg1h
 
-3. Medseg AI - SIRM ( dataset 100 scans from 48 patients - https://medicalsegmentation.com/covid19/
+3. Medseg AI - SIRM, 100 images from over 48 patients - https://medicalsegmentation.com/covid19/
 
 4. MosMedData Dataset COVID19_1110, 50 patients https://mosmed.ai/datasets/covid19_1110/
 
