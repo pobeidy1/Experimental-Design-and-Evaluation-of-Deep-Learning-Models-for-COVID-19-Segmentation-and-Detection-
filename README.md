@@ -3,7 +3,7 @@
 
 ## 1. Introduction
 
-Medical classification has widely benefited from recent developments in computer vision, especially deep artificial neural networks. This work is the continuation of the COVID-19 classification study, which has already been published in the [Journal of Imaging]&#40;https://www.mdpi.com/2313-433X/8/9/237#cite&#41;. Here we evaluated the performance of the Mask-RCNN deep learning neural network to segment lesions of COVID-19 on chest CT 2D images. The kernel of the feature extractor of the Mask-RCNN-ResNet-50-FPN was resized for the segmentation of COVID-19 in infected lungs, together with the creation of custom anchors for detection. We additionally built Mask-RCNN-MobileNet-v3-large-FPN. The fine-tuned Mask-RCNN-ResNet-50 -FPN was the base to compare whether the proposed models surpassed the base model's performance segmentation and detection.)
+Medical classification has widely benefited from recent developments in computer vision, especially deep artificial neural networks. This work is the continuation of the COVID-19 classification study, which has already been published in the [Journal of Imaging](https://www.mdpi.com/2313-433X/8/9/237#cite&#41). Here we evaluated the performance of the Mask-RCNN deep learning neural network to segment lesions of COVID-19 on chest CT 2D images. The kernel of the feature extractor of the Mask-RCNN-ResNet-50-FPN was resized [1] for the segmentation of COVID-19 in infected lungs, together with the creation of custom anchors for detection. We additionally built Mask-RCNN-MobileNet-v3-large-FPN. The fine-tuned Mask-RCNN-ResNet-50 -FPN was the base to compare whether the proposed models surpassed the base model performance for segmentation and detection of COVID-19 in infected CT 2D images. 
 
 
 ## 2. Experimental Design
@@ -12,14 +12,12 @@ The experimental setup consisted of the combination of the Mask-RCNN architectur
 
 - Resize kernels from the first convolutional layer of the feature extractor - the original 
   dimensions were size 7 x 7. The kernels were resized to 3 x 3 and 5 x 5. 
-- Customed anchors - standard size is (32, 64, 128, 256, 512) and aspect ratios are (0.5, 1.0, 2.0). 
-  The custom sizes were anchor sizes= (8, 16, 32, 64, 128, 256) and aspect ratios=(0.25, 0.5, 1.0, 
-  1.5, 
-  2.0). 
+- Customed anchors - standard sizes = (32, 64, 128, 256, 512) and aspect ratios = (0.5, 1.0, 2.0)
+  The custom sizes were anchor sizes= (8, 16, 32, 64, 128, 256) and aspect ratios=(0.25, 0.5, 1.0, 1.5, 2.0). 
 
 In addition, we built Mask-RCNN-MobileNet-large-v3-FPN with the following features:
 - anchor sizes = (8, 16, 32, 64, 128, 256) and 
-aspect_ratios = ((0.25, 0.5, 1.0, 2.0),) 
+aspect_ratios = (0.25, 0.5, 1.0, 2.0)
 
 Table 1 shows the experimental design for this piece of work.
 
@@ -29,6 +27,7 @@ Table 1 shows the experimental design for this piece of work.
 
 <div align="center">
 
+__Table 1__ Experimental design for the segmentationand detection of COVID-19 in CT 2D images.
 
 | Exp |     Model      |                Net                | Resized </br>Kernel | Sizes | Customed</br>Anchors |
 |-----|:--------------:|:---------------------------------:|:-------------------:|:-----:|:--------------------:|
@@ -39,6 +38,8 @@ Table 1 shows the experimental design for this piece of work.
 | 5   |    Mask-RK5    |      Mask-RCNN-ResNet-50-FPN      |        True         | 5 x 5 |          -           |
 | 6   |  Mask-RK5-CA   |      Mask-RCNN-ResNet-50-FPN      |        True         | 5 x 5 |         True         |
 | 7   | Mask-Mobile-CA<sup>& | Mask-RCNN-MobileNet-v3-large-FPN  |          -          |   -   |          -           |
+
+<sup>& Mask-Mobile-CA was built with the same sizes and aspect ration than the custom anchors for the models with ResNet-50-FPN
 </div>
 
 ## 3. Datasets
@@ -54,7 +55,7 @@ https://zenodo.org/record/3757476#.YTdEx55Kg1h
 
 4. MosMedData Dataset COVID19_1110, 50 patients https://mosmed.ai/datasets/covid19_1110/
 
-Except for the MosMedData, all datasets were compressed NIfTI volumes (nii.gz). All images were put together in one dataset.
+Except for the MosMedData, all datasets were compressed NIfTI volumes (nii.gz). All images were put together in one dataset. 
 
 
 ## 4. Methods
@@ -62,10 +63,10 @@ Except for the MosMedData, all datasets were compressed NIfTI volumes (nii.gz). 
 ### 4.1 Data Processing
 
 The 3D volumes were sliced on plane z (axial) and converted to 2D images. All sliced images were put 
-together in one dataset.
+together in one dataset. The total size of the datase was 7396 2D images from more than 317 patients from different nations.
 
-The sliced dataset was split into three subsets using the three-way holdout method with ratios 
-of 80:10:10 for training, validation, and testing. 
+The sliced dataset was split using the three-way holdout method with ratios of 80:10:10 for training, validation, and testing. Random horizontal flips and scale jitter were applied on the fly to the training subset.
+
 
 **Associated code**
 ``` utility\convert_nii2png.py``` and ```utility\nii_vis_dataset.ipyn ``` 
@@ -73,7 +74,17 @@ of 80:10:10 for training, validation, and testing.
 
 ### 4.2 Training and Validation
 
-We trained and validated the models for 30 to 35 epochs and recorded the loss, mean average precision for detection and segmentation (mAP) for the training and validation subsets.
+The models were trained and validated for 50 epochs. The loss, mean average precision for detection and segmentation (mAP) were recorded during the training and validation process. The training parameters are depicted in Table 2.
+
+__Table 2__ Experimental parameters.
+
+| Parmeter             |   Value           |
+|----------------------|-------------------|
+| Learning <br/>rate   |  1.5 e-5, 2.0 e-5 |
+| Batch <br/>size      |  4                | 
+| Epochs               |  50               | 
+| Optimizer	           |  AdamW            |
+| Scheduler            |  Reduce on plateau| 
 
 **Associated code**
 - ```covid_dataset.py```
@@ -84,29 +95,43 @@ We trained and validated the models for 30 to 35 epochs and recorded the loss, m
 
 
 ### 4.3 Evaluation
-The models were evaluated with the COCO style metric mean average precision (mAP or AP) for the 
-segmentation and detection of COVID-19. The mAP at intersections over union (IoU)of 0.50, 0.75 
-and the range (0.5, 0.95, 05) was computed at each training epoch on the validation subset. The 
-performance of each trained model was also evaluated on the test dataset.
+
+The models were evaluated with the COCO style metric mean average precision (mAP). The mAP at intersections over union (IoU) of 0.50, 0.75 and the range (0.5, 0.95, 05) was computed at each training epoch on the validation subset. The trained models were further evaluated on the test subset and the results were ranked.
 
 
 ## 5. Results
 
-__Table 2.__ Performance of the experiments after training for 50 epochs, an initial learning rate of 1.5 e-5 with an on-plateau learning scheduler and AdamW optimizer. 
+Table 2 shows the best mAP achieved per each model on the test subset. Exp-05 and Exp-07 achieved their best mAP when trained with a learning rate of 2.0 e-5, while the other models were trained with a learning rate of 1.5 e-5. Mask-RK3 showed the highest mAP for segmentation and the second largest mAP for detection (Table 3). 
 
-| Exp | mAPb      | APb @ <br/>IoU=0.50 | APb @ <br/>IoU=0.75 | mAPseg    | mAPseg <br/>@ IoU=0.50 | mAPseg <br/>@ IoU=0.75 | 
-|-----|-----------|---------------------|---------------------|-----------|------------------------|------------------------|
-| 1   | 0.4231    | 0.7278              | 0.4336              | 0.3639     | 0.7227                 | 0.3338                 | 
-| 2   | 0.424     |  0.726              | 0.434               | 0.3677    | 0.714                  | 0.314                  | 
-| 3   | 0.6242    |  __0.8532__         | 0.6967              | 0.531.    | __0.8502__             | 0.5954                 | 
-| 4	  | __0.6648__| 0.8398              | __0.741__           | __0.5519_ |   0.8358               | __0.6381__             | 
-| 5   | __0.6387__| __0.8782__          | __0.7107__          | __0.5558__| __0.8737__             | __0.6355 __            | 
-| 6   | 0.5989    | 0.7976              | 0.6561              | 0.4966    | 0.7971                 | 0.5598                 |
-| 7   | 0.4149    | 0.6878              | 0.4319              | 0.3267    | 0.6478                 | 0.3087                 |
+__Table 3.__ Best experimental results after training for 50 epochs, using AdamW optimizer and learning scheduler on the on-plateau.
 
 
+| Exp |   Model        |  mAPb       | APb @ <br/>IoU=0.50 | APb @ <br/>IoU=0.75 | mAPseg    | mAPseg <br/>@ IoU=0.50 | mAPseg <br/>@ IoU=0.75 | 
+|-----|:--------------:|:-----------:|:-------------------:|:-------------------:|:---------:|:----------------------:|:----------------------:|
+| 1   |  Base model    |0.4231       | 0.7278              | 0.4336              | 0.3639    | 0.7227                 | 0.3338                 |
+| 2   |  Mask-CA       |__0.7067__   |  0.866              | __0.7847__          | 0.5575    | 0.8635                 | 0.6301                 |
+| 3   |  Mask-RK3      | 0.6562      | __0.8923__          | 0.7364              | __0.5677__| __0.881__              | __0.6576__             |
+| 4	  |  Mask-RK3-CA   |0.6648.      | 0.8398              | 0.741               |  0.5519   |   0.8358               |   0.6381               |
+| 5   |  Mask-RK5      |0.6347       |  0.877              |  0.718              |  0.5486   |   0.8712               | 0.6096                 | 
+| 6   |  Mask-RK5-CA   |0.5989       | 0.7976              | 0.6561              | 0.4966    | 0.7971                 | 0.5598                 |
+| 7   | Mask-Mobile-CA |0.5081       | 0.7511              | 0.5382              | 0.3876    | 0.7138                 | 0.3932                 |
 
-Our results showed that models with backbone ResNet-50-FPN and resized kernel to 3 x 3 reached a higher performance than the base model,  resized to 5 x 5 kernel with or without custom anchors.
+
+__Table 4.__ Models ranking per metric.
+
+| Exp |   Model        |  mAPb       | APb @ <br/>IoU=0.50 | APb @ <br/>IoU=0.75 | mAPseg    | mAPseg <br/>@ IoU=0.50 | mAPseg <br/>@ IoU=0.75 | 
+|-----|:--------------:|:-----------:|:-------------------:|:-------------------:|:---------:|:----------------------:|:----------------------:|
+| 1   |  Base model    |7.0          | 7.0                 | 7.0                 |7.0        |   6.0                  |7.0                     |
+| 2   |  Mask-CA       |__1.0__      | 3.0                 | __1.0__             |2.0        |   3.0                  | 3.0                    |
+| 3   |  Mask-RK3      |3.0          | __1.0__             | 3.0                 | __1.0__   | __1.0__                | __1.0__                |
+| 4	  |  Mask-RK3-CA   |2.0          | 4.0                 | 2.0                 |  3.0      |   4.0                  |  2.0                   |
+| 5   |  Mask-RK5      |4.0          | 2.0                 | 4.0                 |  4.0      |   2.0                  | 4.0                    | 
+| 6   |  Mask-RK5-CA   |5.0          | 5.0                 | 5.0                 | 5.0       |   5.0                  | 5.0                    |
+| 7   | Mask-Mobile-CA |6.0          | 6.0                 | 6.0                 | 6.0       |   7.0                  | 6.0                    |
+
+
+Tables 3-4 showed that Mask-RK3 model which has a ResNet-50-FPN backbone and kernels of size 3 x 3 outperformed the other models at segmenting COVID-19 lessions in CT sliced images. We can also observ that the best model for the detection was Mask-CA. Work conducted by [2] reported mAP at Iou=0.5 of 0.623 for the detection of COVID-19 in X-rays with YOLO-v5 network. Mask-RCNN ResNet50+FPN backbone with attention mechanism on RoI has been reported to have achieve 0.4469 at IoU range[0.5:0.05:0.95][2]. In this work experiments Exp-02 to Exp-06 presented mAP at IoU=0.5 starting from 0.7138 and mAP at IoU range [0.5:0.05:0.95] from 0.3639 to 0.56677 for segmentation. Besides the mAP at IoU=0.50  achieved for the detections of COVID-19 was over 0.72 in all models (experiments). 
+
 
 ### 5.1 Inference example
 
@@ -117,6 +142,17 @@ Our results showed that models with backbone ResNet-50-FPN and resized kernel to
 <img src='/figures/predictions_5_maskrcnn-resnet50-fpn_r.png' height='200'/>
 
 <img src='figures/predictions_6_maskrcnn-resnet50-fpn_r.png' height='200'/>
+
+<img src='figures/predictions_6_maskrcnn-resnet50-fpn_r.png' height='200'/>
+
+<img src='figures/predictions_6_maskrcnn-resnet50-fpn_r.png' height='200'/>
+
+## References
+[1] A. Ascencio-Cabral and C. C. Reyes-Aldasoro, “Comparison of Convolutional Neural Networks and Transformers for the Classification of Images of COVID-19, Pneumonia and Healthy Individuals as Observed with Computed Tomography,” Journal of Imaging, vol. 8, no. 9, p. 237, Sep. 2022, doi: 10.3390/jimaging8090237.
+
+[2] R. Qu, Y. Yang and Y. Wang, "COVID-19 Detection Using CT Image Based On YOLOv5 Network," 2021 3rd International Academic Exchange Conference on Science and Technology Innovation (IAECST), 2021, pp. 622-625, doi: 10.1109/IAECST54258.2021.9695714.
+
+[3] A. Ter-Sarkisov, "One Shot Model for COVID-19 Classification and Lesions Segmentation in Chest CT Scans Using Long Short-Term Memory Network With Attention Mechanism," in IEEE Intelligent Systems, vol. 37, no. 3, pp. 54-64, 1 May-June 2022, doi: 10.1109/MIS.2021.3135474.
 
 
 ### Installation
