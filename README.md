@@ -133,6 +133,9 @@ __Table 4.__ Models ranking per metric.
 Tables 3-4 showed that Mask-RK3 model which has a ResNet-50-FPN backbone and kernels of size 3 x 3 outperformed the other models at segmenting COVID-19 lessions in CT sliced images. Mask-CA showed the highest performance for the detection of COVID-19. Work conducted by [3] reported mAP at Iou=0.5 of 0.623 for the detection of COVID-19 in X-rays with YOLO-v5 network. A LSTM network with attention mechanism has achieved an mAP 0.4469 at IoU range[0.5:0.05:0.95] for segmentation of COVID-19 lession in the lungs [4]. The models in this work achieved mAP at IoU=0.5 starting from 0.7138 and mAP at IoU range [0.5:0.05:0.95] from 0.3639 to 0.5695 for the segmentation of COVID-19. In addition, all models achieved mAP at IoU=0.50 over 0.72 for the detections of COVID-19.
 
 
+The weights for the best two wodels Exp-02 and Exp-03 can be accesss on 
+[best weights](https://drive.google.com/file/d/1m9cDDWT1KIwV6s7uVXSA4wME41PZnRpj/view?usp=sharing).
+
 
 
 ### 5.1 Inference example
