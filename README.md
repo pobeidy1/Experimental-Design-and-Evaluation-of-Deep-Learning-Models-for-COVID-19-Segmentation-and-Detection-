@@ -139,29 +139,29 @@ Tables 3-4 showed that Mask-RK3 model which has a ResNet-50-FPN backbone and ker
 
 __Fig 1.__ Exp-01: Base model inference on four images from the test subset.
 
-<img src='figures/predictions_exp_4_maskrcnn-resnet50-fpn_ra.png' height='200'/>
+<img src='figures/predictions_exp_2_maskrcnn-resnet50-fpn_a.png' height='200'/>
 
 __Fig 2.__ Exp-02: Mask-CA model inference on four images from the test subset.
 
-<img src='figures/predictions_5_maskrcnn-resnet50-fpn_r.png' height='200'/>
+<img src='figures/predictions_exp_3_maskrcnn-resnet50-fpn_r.png' height='200'/>
 
 __Fig 3.__ Exp-03: Mask-RK3 model inference on four images from the test subset.
 
-<img src='figures/predictions_6_maskrcnn-resnet50-fpn_r.png' height='200'/>
+<img src='figures/predictions_exp_4_maskrcnn-resnet50-fpn_ra.png' width='750'/>
 
 __Fig 4.__ Exp-04: Mask-RK3-CA model inference on four images from the test subset.
 
-<img src='figures/predictions_6_maskrcnn-resnet50-fpn_r.png' height='200'/>
+<img src= 'figures/predictions_exp_5_maskrcnn-resnet50-fpn_r.png' height='200'/>
 
 __Fig 5.__ Exp-05: Mask-RK5 model inference on four images from the test subset.
 
-<img src='figures/predictions_6_maskrcnn-resnet50-fpn_r.png' height='200'/>
+<img src='figures/predictions_exp_6_maskrcnn-resnet50-fpn_ra.png' height='200'/>
 
 __Fig 6.__ Exp-06: Mask-RK5-CA model inference on four images from the test subset.
 
-<img src='figures/predictions_6_maskrcnn-resnet50-fpn_r.png' height='200'/>
+<img src='figures/predictions_exp_7_maskrcnn-mobilenet-v3.png' height='200'/>
 
-__Fig 6.__ Exp-07: Mask-Mobile-CA model inference on four images from the test subset.
+__Fig 7.__ Exp-07: Mask-Mobile-CA model inference on four images from the test subset.
 
 
 ## References
