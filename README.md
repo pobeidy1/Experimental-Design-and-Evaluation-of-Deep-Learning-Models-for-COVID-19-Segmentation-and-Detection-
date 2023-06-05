@@ -1,4 +1,4 @@
-<h1><div style="text-align: center;">  COVID-19 Detection and Segmentation in chest CT image slices</div></h1>
+<h1 align=center> Experimental Design and Evaluation of Deep Learning Models for COVID-19 Segmentation and Detection in CT Medical Images</h1>
 
 
 ## 1. Introduction
